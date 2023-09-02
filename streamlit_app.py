@@ -29,7 +29,7 @@ with col1:
 	
 with col2:
 	st.write('Bar chart group by primary_type')
-	st.bar_char(prim_type_grp)
+	#st.bar_char(prim_type_grp)
 	
 with col3:
 	st.write('3rd column')
