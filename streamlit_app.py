@@ -17,7 +17,7 @@ fetch_ptg = sn_cur.fetchall()
 prim_type_grp = st.dataframe(fetch_ptg)
 
 ### Set the title/header
-st.set_page_config(layout='wide')
+#st.set_page_config(layout='wide')
 st.header('Welcome to my streamlit/snowflake experiments.')
 st.subheader('Hope you enjoy my learning journey!')
 
