@@ -23,7 +23,7 @@ st.subheader('Hope you enjoy my learning journey!')
 col1, col2, col3, col4 = st.columns((2,1,1,1))
 with col1:
 	st.write('first column')
-	#st.write(f'there are {data_row} rows!')
+	st.write(f'there are {data_row} rows!')
 
 with col2:
 	st.write('2nd column')
