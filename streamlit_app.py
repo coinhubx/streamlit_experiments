@@ -15,7 +15,7 @@ total_cnt = sn_cur.fetchall()
 
 
 ### Set the title/header
-#st.set_page_config(layout='wide')
+st.set_page_config(layout='wide')
 st.header('Welcome to my streamlit/snowflake experiments.')
 st.subheader('Hope you enjoy my learning journey!')
 
@@ -30,7 +30,7 @@ with col2:
 	sn_cur.execute("select Primary_Type, count(1) from RAW.CHICAGO_CRIMES group by Primary_Type order by Primary_Type;")
 	fetch_ptg = sn_cur.fetchall()
 	prim_type_grp = st.dataframe(fetch_ptg)
-	st.bar_chart(prim_type_grp)
+	#st.bar_chart(prim_type_grp)
 	
 with col3:
 	st.write('3rd column')
