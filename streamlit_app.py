@@ -1,7 +1,7 @@
 import streamlit as st
 import snowflake.connector # snowflake connection
 import pandas
-import requests # API calls
+
 
 ### Snowflake connection
 sn_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
