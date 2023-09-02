@@ -1,6 +1,0 @@
-import streamlit as st
-import pandas as ppd
-import nump as np
-
-
-st.title('Hello!')
