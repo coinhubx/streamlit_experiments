@@ -1,10 +1,11 @@
 import streamlit as st
-import snowflake.connector # snowflake connection
+import snowflake.connector
 import pandas
+import requests
 
 
 ### Snowflake connection
-sn_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+sn_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 sn_cur = sn_cnx.cursor()
 sn_cur.execute("SELECT COUNT(1) FROM RAW.CHICAGO_CRIMES;")
 data_row = sn_cur.fetchall()
