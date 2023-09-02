@@ -13,7 +13,8 @@ total_cnt = sn_cur.fetchall()
 
 #Group by 
 sn_cur.execute("select Primary_Type, count(1) from RAW.CHICAGO_CRIMES group by Primary_Type order by Primary_Type;")
-prim_type_grp = sn_cur.fetchall()
+fetch_ptg = sn_cur.fetchall()
+prim_type_grp = pd.DataFrame(fetch_ptg)
 
 ### Set the title/header
 st.set_page_config(layout='wide')
