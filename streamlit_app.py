@@ -20,7 +20,7 @@ st.header('Welcome to my streamlit/snowflake experiments.')
 st.subheader('Hope you enjoy my learning journey!')
 
 ## Layout
-col1, col2, col3, col4 = st.columns((2,1,1,1))
+col1, col2, col3, col4 = st.columns((1,2,1,1))
 with col1:
 	st.write('Dataset general information')
 	st.write(f'there are {total_cnt[0]} rows!')
