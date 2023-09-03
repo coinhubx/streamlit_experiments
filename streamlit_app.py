@@ -1,6 +1,6 @@
 import streamlit as st
 import snowflake.connector
-#import pandas as pd
+import pandas as pd
 import requests
 
 ### Snowflake connection
@@ -29,10 +29,9 @@ with col2:
 	st.write('Bar chart group by primary_type')
 	sn_cur.execute("select Primary_Type, count(1) from RAW.CHICAGO_CRIMES group by Primary_Type order by Primary_Type;")
 	fetch_ptg = sn_cur.fetchall()
-	prim_type_grp = st.dataframe(fetch_ptg)
-	ptg_columns = prim_type_grp.columns
-	st.write(ptg_columns)
-	#st.bar_chart(prim_type_grp)
+	prim_type_grp = pd.dataframe(fetch_ptg)
+	st.dataframe(prim_type_grp)
+
 	
 with col3:
 	st.write('3rd column')
