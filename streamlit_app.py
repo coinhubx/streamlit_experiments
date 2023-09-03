@@ -28,7 +28,7 @@ with col1:
 with col2:
 	st.write('Bar chart group by primary_type')
 	sn_cur.execute("select Primary_Type, count(1) from RAW.CHICAGO_CRIMES group by Primary_Type order by Primary_Type;")
-	ptg = sn_cur.fetch_pandas_all()
+	ptg = sn_cur.fetchall()
 	#st.write(ptg.columns)
 	st.dataframe(ptg)
 
