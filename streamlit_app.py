@@ -32,14 +32,15 @@ with col2:
 	#st.write(ptg.columns)
 	st.dataframe(ptg)
 	
-	number = st.number_input('Insert the primary type.')
-	st.write('The current number is ', number)
+	text = st.text_input('Insert the primary type.')
+	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE = '{text}';")
 	
 	st.button("Submit", type="primary")
-	if st.button('Say hello'):
-		st.write('Why hello there')
-	else:
-		st.write('Goodbye')
+	if st.button('Submit'):
+		ptg_filter = sn_cur.fetchall()
+		st.dataframe(ptg_filter)
+	
+	
 
 	
 with col3:
