@@ -31,7 +31,7 @@ with col2:
 	ptg = sn_cur.fetchall()
 	#st.write(ptg.columns)
 	ptg_ds = pd.DataFrame(ptg)
-	ptg_ds = ptg_ds.set_index("PRIMARY_TYPE")
+	##ptg_ds = ptg_ds.set_index("PRIMARY_TYPE")
 	st.dataframe(ptg_ds)
 
 	
