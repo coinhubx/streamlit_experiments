@@ -32,9 +32,11 @@ with col2:
 	#st.write(ptg.columns)
 	st.dataframe(ptg)
 	
-	text = st.text_input('Insert the primary type.')
+	text = st.text_input('st.text_input demo - Single word search :  Insert the primary type.', value = 'ROBBERY', max_chars = 30)
+	
 	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE = '{text}';")
 	
+	st.write('st.button demo - 2 buttons')
 	st.button("Reset", type="primary")
 	if st.button('Submit'):
 		ptg_filter = sn_cur.fetchall()
