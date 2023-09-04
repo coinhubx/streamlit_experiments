@@ -32,15 +32,27 @@ with col2:
 	#st.write(ptg.columns)
 	st.dataframe(ptg)
 	
-	text = st.text_input('st.text_input demo - Single word search :  Insert the primary type.', value = 'ROBBERY', max_chars = 30)
+	st.write('------------')
+	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
+	text = st.text_input('Insert the primary type.', value = 'ROBBERY', max_chars = 30)
 	
 	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE = '{text}';")
 	
 	st.write('st.button demo - 2 buttons')
 	st.button("Reset", type="primary")
 	if st.button('Submit'):
-		ptg_filter = sn_cur.fetchall()
-		st.dataframe(ptg_filter)
+		ptg = sn_cur.fetchall()
+		st.dataframe(ptg)
+	
+	st.write('------------')
+	st.write('st.multiselect : select from the list provided.')
+	sn_cur.execute(f"select distinct PRIMARY_TYPE FROM RAW.SUMMARY_CRIME_COUNTS;")
+	ptg_list = sn_cur.fetchall()
+	ptg_index = ptg_list.set_index("PRIMARY_TYPE")
+	st.write(ptg_index)
+	###options = st.multiselect('Select the primary type(s)', list(ptg_index))
+	
+	
 
 	
 with col3:
