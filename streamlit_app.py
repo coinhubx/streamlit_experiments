@@ -11,8 +11,8 @@ sn_cur = sn_cnx.cursor()
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() ?
 ptg_pd = pd.DataFrame(data, columns=sn_cur.description)
-ptg_pd = ptg_pd.set_index('PRIMARY_TYPE')
-
+#ptg_pd = ptg_pd.set_index('PRIMARY_TYPE')
+sn.write(sn_cur.description)
 #Group by 
 
 
