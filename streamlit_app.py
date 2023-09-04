@@ -9,7 +9,7 @@ sn_cur = sn_cnx.cursor()
 
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
-#ptg_pd = sn_cur.fetch_pandas_all()
+ptg_pd = sn_cur.fetch_pandas_all()
 
 #Group by 
 
