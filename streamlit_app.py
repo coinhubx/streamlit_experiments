@@ -10,7 +10,7 @@ sn_cur = sn_cnx.cursor()
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() ?
-ptg_df = pd.DataFrame(data, columns=sn_cur.description)
+ptg_pd = pd.DataFrame(data, columns=sn_cur.description)
 
 
 #Group by 
@@ -25,7 +25,7 @@ st.subheader('Hope you enjoy my learning journey!')
 col1, col2, col3, col4 = st.columns((1,2,1,1))
 with col1:
 	st.write('Dataset general information')
-	#st.write(f'there are {ptg_pd.shape} rows in the table!')
+	st.write(f'there are {ptg_pd.shape} rows in the table!')
 	
 with col2:
 	st.write('Bar chart group by primary_type')
