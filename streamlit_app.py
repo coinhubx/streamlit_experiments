@@ -33,8 +33,7 @@ with col2:
 	st.dataframe(ptg)
 	
 	text = st.text_input('Insert the primary type.')
-	text = f'[{text}]'
-	st.write(text)
+	st.write(text.split)
 	"""
 	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE IN (SELECT value FROM TABLE(FLATTEN(input => parse_json({text}))));")
 	
