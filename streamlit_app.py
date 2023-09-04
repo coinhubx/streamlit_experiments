@@ -33,15 +33,13 @@ with col2:
 	st.dataframe(ptg)
 	
 	text = st.text_input('Insert the primary type.')
-	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE = '{text}';")
+	text = f'[{text}]'
+	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE IN (SELECT value FROM TABLE(FLATTEN(input => parse_json({text}))));")
 	
-	st.button("Submit", type="primary")
+	st.button("Reset", type="primary")
 	if st.button('Submit'):
 		ptg_filter = sn_cur.fetchall()
 		st.dataframe(ptg_filter)
-	
-	
-
 	
 with col3:
 	st.write('3rd column')
