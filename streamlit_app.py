@@ -10,7 +10,7 @@ sn_cur = sn_cnx.cursor()
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() ?
-ptg_df = pd.DataFrame(data, columns=cur.description)
+ptg_df = pd.DataFrame(data, columns=sn_cur.description)
 
 
 #Group by 
