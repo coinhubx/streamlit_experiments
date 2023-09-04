@@ -7,6 +7,11 @@ import requests
 sn_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 sn_cur = sn_cnx.cursor()
 
+### Set the title/header
+st.set_page_config(layout='wide')
+st.header('Welcome to my streamlit/snowflake experiments.')
+st.subheader('Hope you enjoy my learning journey!')
+
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() ?
@@ -15,11 +20,6 @@ ptg_pd = pd.DataFrame(data, columns=sn_cur.description)
 st.write(sn_cur.description)
 #Group by 
 
-
-### Set the title/header
-st.set_page_config(layout='wide')
-st.header('Welcome to my streamlit/snowflake experiments.')
-st.subheader('Hope you enjoy my learning journey!')
 
 ## Layout
 col1, col2, col3, col4 = st.columns((1,2,1,1))
