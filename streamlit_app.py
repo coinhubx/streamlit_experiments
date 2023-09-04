@@ -32,7 +32,7 @@ with col2:
 	#st.write(ptg.columns)
 	ptg_ds = pd.DataFrame(ptg)
 	##ptg_ds = ptg_ds.set_index("PRIMARY_TYPE")
-	st.dataframe(ptg_ds)
+	st.dataframe(ptg_ds.columns)
 
 	
 	
