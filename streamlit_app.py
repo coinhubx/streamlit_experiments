@@ -48,7 +48,7 @@ with col2:
 	st.write('st.multiselect : select from the list provided.')
 	sn_cur.execute(f"select distinct PRIMARY_TYPE FROM RAW.SUMMARY_CRIME_COUNTS;")
 	ptg_list = sn_cur.fetchall()
-	options = st.multiselect('Select the primary type(s)', list(ptg_list))
+	options = st.multiselect('Select the primary type(s)', ptg_list[0].values.to_list())
 	
 	
 
