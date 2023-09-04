@@ -34,7 +34,7 @@ with col2:
 	
 	text = st.text_input('Insert the primary type.')
 	text_split = text.split
-	st.write(text_split)
+	st.write(str(text_split))
 	"""
 	sn_cur.execute(f"select * FROM RAW.SUMMARY_CRIME_COUNTS WHERE PRIMARY_TYPE IN (SELECT value FROM TABLE(FLATTEN(input => parse_json({text}))));")
 	
