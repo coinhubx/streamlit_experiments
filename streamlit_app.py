@@ -17,7 +17,6 @@ sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() ?
 ptg_pd = pd.DataFrame(data, columns=sn_cur.description)
 #ptg_pd = ptg_pd.set_index(ptg_pd[])
-st.write(sn_cur.description)
 #Group by 
 
 
@@ -30,10 +29,8 @@ with col1:
 with col2:
 	st.write('Bar chart group by primary_type')
 
-	#st.write(ptg.columns)
-	#ptg_ds = pd.DataFrame(ptg, columns=sn_cur.description)
-	#ptg_ds = ptg_ds.set_index("PRIMARY_TYPE")
-	#st.dataframe(ptg_ds)
+
+	st.datafraptg_pd)
 	
 	st.write('------------')
 	#st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
