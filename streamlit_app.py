@@ -9,8 +9,12 @@ sn_cur = sn_cnx.cursor()
 
 ### Set the title/header
 st.set_page_config(layout='wide')
-st.header('Welcome to my streamlit/snowflake experiments.')
-st.subheader('Hope you enjoy my learning journey!')
+
+'''
+# Welcome to my streamlit/snowflake experiments.
+Hope you enjoy my learning journey!
+
+'''
 
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
@@ -23,28 +27,29 @@ ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 ## Layout
 col1, col2, col3 = st.columns((1,2,2))
 with col1:
-	st.write('Dataset general information')
-	st.write(f"there are {ptg_pd['COUNT'].sum()} rows in the table!")
+	'Dataset general information'
+	f"there are {ptg_pd['COUNT'].sum()} rows in the table!"
+	
+	
 	
 with col2:
-	st.write('Bar chart group by primary_type')
-	st.dataframe(ptg_pd) 
+	'Bar chart group by primary_type'
+	ptg_pd
 	
-	st.write('------------')
-	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
+	'st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled'
 	selected_in_text = st.text_input('Insert the primary type.', value = 'ROBBERY')#, max_chars = 30)
 	
-	st.write('st.button demo - 2 buttons')
+	'st.button demo - 2 buttons'
 	st.button("Reset", type="primary")
 	if st.button('Submit'):
 		sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(',')))
 		try:
 			df_sit = ptg_pd.loc[sit_text_list]
-			st.dataframe(df_sit)
+			df_sit
 		except KeyError as e:
-			st.write('Error occurs please check your spelling.')
+			'Error occurs please check your spelling.'
 	
-	st.write('------------')
+
 	st.write('st.multiselect : select from the list provided.')
 	options = st.multiselect('Select the primary type(s)', ptg_pd.index)
 	#st.write(options) # for debug
