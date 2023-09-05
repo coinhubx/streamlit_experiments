@@ -10,8 +10,9 @@ sn_cur = sn_cnx.cursor()
 ### Set the title/header
 st.set_page_config(layout='wide')
 
-st.title(':blue[Chicago Crime] Summary :cop:')
-st.subheader('Hope you enjoy my summary!')
+st.title(':blue[Chicago Crime] Database :cop:')
+st.caption('---streamlit experiments')
+st.divider()
 
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
@@ -41,7 +42,7 @@ with col2:
 			df_sit = ptg_pd.loc[sit_text_list]
 			df_sit
 		except KeyError as e:
-			':red[Error occurs] - please check your spelling.'
+			':red[**Error occurs**] - please check your spelling.'
 	
 
 	'st.multiselect : select from the list provided.'
@@ -57,9 +58,10 @@ with col3:
 	df3_to_show = ptg_pd[ptg_pd['COUNT']< num_selected]
 	df3_to_show
 
-	st.write('bar chart')
-	
+	'bar chart'
 	# pick color for the bar
 	color_picked = st.color_picker('pick a color for the bar chart', '#f774d8')
 	st.bar_chart(ptg_pd, color = color_picked)
 	
+
+'HELLO WORLD, want to test here if it is in a different area outside of columns.'
