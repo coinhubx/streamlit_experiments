@@ -59,5 +59,8 @@ with col3:
 	st.dataframe(df3_to_show)
 	
 	st.write('bar chart')
-	st.bar_chart(ptg_pd)
+	
+	# pick color for the bar
+	color_picked = st.color_picker('pick a color for the bar chart', '#f774d8')
+	st.bar_chart(ptg_pd, color = color_picked)
 	
