@@ -31,12 +31,13 @@ with col2:
 	
 	st.write('------------')
 	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
-	text = st.text_input('Insert the primary type.', value = 'ROBBERY', max_chars = 30)
-	
+	selected_in_text = st.text_input('Insert the primary type.', value = 'ROBBERY', max_chars = 30)
+	st.write(ptg_pd_sit)
 	st.write('st.button demo - 2 buttons')
 	st.button("Reset", type="primary")
-	if st.button('Submit'):
-		st.dataframe(ptg_pd)
+	#if st.button('Submit'):
+		#ptg_pd_sit = ptg_pd.loc[selected_in_text]
+		#st.dataframe(ptg_pd_sit)
 	
 	st.write('------------')
 	#st.write('st.multiselect : select from the list provided.')
