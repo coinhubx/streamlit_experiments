@@ -16,7 +16,7 @@ st.subheader('Hope you enjoy my learning journey!')
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 df_columns = list(map(lambda x :x[0], sn_cur.description))
-ptg_pd = pd.DataFrame(data, columns= df_columns) #a pandas dataframe with column names
+ptg_pd = pd.DataFrame(data, columns = df_columns) #a pandas dataframe with column names
 ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 
 
@@ -33,16 +33,17 @@ with col2:
 	st.write('------------')
 	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
 	selected_in_text = st.text_input('Insert the primary type.', value = 'ROBBERY')#, max_chars = 30)
-	sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(',')))
+	
 	st.write('st.button demo - 2 buttons')
 	st.button("Reset", type="primary")
-	#if st.button('Submit'):
-		#ptg_pd_sit = ptg_pd.loc[selected_in_text]
-		#st.dataframe(ptg_pd_sit)
+	if st.button('Submit'):
+		sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(',')))
+		st.write(sit_text_list)
 	
 	st.write('------------')
 	st.write('st.multiselect : select from the list provided.')
-	options = st.multiselect('Select the primary type(s)', ptg_pd['PRIMARY_TYPE'])
+	st.write(ptg_pd['PRIMARY_TYPE'])
+	#options = st.multiselect('Select the primary type(s)', ptg_pd['PRIMARY_TYPE'])
 	
 
 	
