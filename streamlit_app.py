@@ -51,10 +51,12 @@ with col2:
 	df_to_show = ptg_pd.loc[options]
 	st.dataframe(df_to_show)
 	
-
 	
 with col3:
-	st.write('3rd column')
+	st.write('input widget - slider')
+	num_selected = st.slider('What number', 0.0, 1700000)
+	df3_to_show = ptg_pd[ptg_pd['COUNT']< num_selected]
+	st.dataframe(df3_to_show)
 	
 with col4:
 	st.write('4th column')
