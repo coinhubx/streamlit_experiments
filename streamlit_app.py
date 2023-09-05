@@ -59,5 +59,5 @@ with col3:
 	st.dataframe(df3_to_show)
 	
 	st.write('bar chart')
-	st.bar_char(ptg_pd)
+	st.bar_chart(ptg_pd)
 	
