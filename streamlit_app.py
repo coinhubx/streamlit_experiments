@@ -15,7 +15,8 @@ st.subheader('Hope you enjoy my learning journey!')
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
-ptg_pd = pd.DataFrame(data, columns= list(map(lambda x :x[0], sn_cur.description))) #a pandas dataframe with column names
+df_columns = list(map(lambda x :x[0], sn_cur.description))
+ptg_pd = pd.DataFrame(data, columns= df_columns) #a pandas dataframe with column names
 ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 
 
@@ -31,8 +32,8 @@ with col2:
 	
 	st.write('------------')
 	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
-	selected_in_text = st.text_input('Insert the primary type.', value = 'ROBBERY', max_chars = 30)
-	st.write(selected_in_text.split(','))
+	selected_in_text = st.text_input('Insert the primary type.', value = 'ROBBERY')#, max_chars = 30)
+	sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(','))
 	st.write('st.button demo - 2 buttons')
 	st.button("Reset", type="primary")
 	#if st.button('Submit'):
@@ -40,12 +41,8 @@ with col2:
 		#st.dataframe(ptg_pd_sit)
 	
 	st.write('------------')
-	#st.write('st.multiselect : select from the list provided.')
-	#sn_cur.execute(f"select distinct PRIMARY_TYPE FROM RAW.SUMMARY_CRIME_COUNTS;")
-	#ptg_list = sn_cur.fetchall()
-	#options = st.multiselect('Select the primary type(s)', list(map(lambda x: x[0], ptg_list)))
-	
-	
+	st.write('st.multiselect : select from the list provided.')
+	options = st.multiselect('Select the primary type(s)', df_columns)
 	
 
 	
