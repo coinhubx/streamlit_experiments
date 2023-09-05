@@ -42,7 +42,7 @@ with col2:
 	
 	st.write('------------')
 	st.write('st.multiselect : select from the list provided.')
-	st.write(ptg_pd['PRIMARY_TYPE'])
+	st.write(ptg_pd)
 	#options = st.multiselect('Select the primary type(s)', ptg_pd['PRIMARY_TYPE'])
 	
 
