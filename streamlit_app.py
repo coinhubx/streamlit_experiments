@@ -30,7 +30,7 @@ with col2:
 	st.write('Bar chart group by primary_type')
 
 
-	st.dataframe(ptg_ds) 
+	st.dataframe(ptg_pd) 
 	
 	st.write('------------')
 	#st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
