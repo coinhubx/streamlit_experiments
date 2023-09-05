@@ -24,7 +24,7 @@ ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 col1, col2, col3, col4 = st.columns((1,2,1,1))
 with col1:
 	st.write('Dataset general information')
-	st.write(f'there are {ptg_pd.shape[0]} rows in the table!')
+	st.write(f"there are {ptg_pd.['COUNT'].sum()} rows in the table!")
 	
 with col2:
 	st.write('Bar chart group by primary_type')
