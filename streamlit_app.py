@@ -11,7 +11,7 @@ sn_cur = sn_cnx.cursor()
 st.set_page_config(layout='wide')
 
 
-st.title('Welcome to my _Streamlit/Snowflake_ experiments.', divider = 'rainbow')
+st.title('Welcome to my _Streamlit/Snowflake_ experiments.')
 st.subheader('Hope you enjoy my :blue[learning journey] :car:!')
 
 
