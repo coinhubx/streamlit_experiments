@@ -11,7 +11,7 @@ sn_cur = sn_cnx.cursor()
 st.set_page_config(layout='wide')
 
 st.title(':blue[Chicago Crime] Database :cop:')
-st.caption('---streamlit experiments')
+st.caption('streamlit experiments')
 st.divider()
 
 #read the materialized view
@@ -63,5 +63,6 @@ with col3:
 	color_picked = st.color_picker('pick a color for the bar chart', '#f774d8')
 	st.bar_chart(ptg_pd, color = color_picked)
 	
+st.divider()
 
-'HELLO WORLD, want to test here if it is in a different area outside of columns.'
+st.header('REPORT AREA', divider = 'rainbow')
