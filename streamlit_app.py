@@ -16,8 +16,7 @@ st.subheader('Hope you enjoy my learning journey!')
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() ?
 ptg_pd = pd.DataFrame(data, columns= list(map(lambda x :x[0], sn_cur.description)))
-#ptg_pd = ptg_pd.set_index(ptg_pd[])
-#Group by 
+ptg_pd = ptg_pd.set_index('PRIMARY_TYPE')
 
 
 ## Layout
