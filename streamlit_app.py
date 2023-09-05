@@ -21,7 +21,7 @@ ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 
 
 ## Layout
-col1, col2, col3, col4 = st.columns((1,2,1,1))
+col1, col2, col3= st.columns((1,2,2))
 with col1:
 	st.write('Dataset general information')
 	st.write(f"there are {ptg_pd['COUNT'].sum()} rows in the table!")
@@ -57,6 +57,4 @@ with col3:
 	num_selected = st.slider('What number', 0, 1700000, 500)
 	df3_to_show = ptg_pd[ptg_pd['COUNT']< num_selected]
 	st.dataframe(df3_to_show)
-	
-with col4:
-	st.write('4th column')
+
