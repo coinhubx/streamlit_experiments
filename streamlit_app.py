@@ -10,10 +10,8 @@ sn_cur = sn_cnx.cursor()
 ### Set the title/header
 st.set_page_config(layout='wide')
 
-
-st.title('Welcome to my _Streamlit/Snowflake_ experiments.')
-st.subheader('Hope you enjoy my :blue[learning journey] :car:!')
-
+st.title(':blue[Chicago Crime] Summary :cop:')
+st.subheader('Hope you enjoy my summary!')
 
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
@@ -43,7 +41,7 @@ with col2:
 			df_sit = ptg_pd.loc[sit_text_list]
 			df_sit
 		except KeyError as e:
-			'Error occurs please check your spelling.'
+			':red[Error occurs] - please check your spelling.'
 	
 
 	'st.multiselect : select from the list provided.'
