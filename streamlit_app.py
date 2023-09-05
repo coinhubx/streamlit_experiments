@@ -21,7 +21,7 @@ ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 
 
 ## Layout
-col1, col2, col3= st.columns((1,2,2))
+col1, col2, col3 = st.columns((1,2,2))
 with col1:
 	st.write('Dataset general information')
 	st.write(f"there are {ptg_pd['COUNT'].sum()} rows in the table!")
@@ -54,7 +54,12 @@ with col2:
 	
 with col3:
 	st.write('input widget - slider')
-	num_selected = st.slider('What number', 0, 1700000, 500)
+	num_selected = st.slider('What number', 0, 500, 100)
 	df3_to_show = ptg_pd[ptg_pd['COUNT']< num_selected]
 	st.dataframe(df3_to_show)
+	
+	st.write('bar chart')
+	st.bar_char(ptg_pd)
+	
+	
 
