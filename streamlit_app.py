@@ -12,7 +12,7 @@ st.set_page_config(layout='wide')
 
 
 st.title('Welcome to my _Streamlit/Snowflake_ experiments.', divider = 'rainbow')
-st.subheader('Hope you enjoy my :blue[learning journey] :car!')
+st.subheader('Hope you enjoy my :blue[learning journey] :car:!')
 
 
 #read the materialized view
