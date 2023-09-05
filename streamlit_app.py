@@ -33,7 +33,7 @@ with col2:
 	st.write('------------')
 	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
 	selected_in_text = st.text_input('Insert the primary type.', value = 'ROBBERY')#, max_chars = 30)
-	sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(','))
+	sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(',')))
 	st.write('st.button demo - 2 buttons')
 	st.button("Reset", type="primary")
 	#if st.button('Submit'):
