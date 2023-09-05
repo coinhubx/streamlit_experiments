@@ -42,7 +42,7 @@ with col2:
 	
 	st.write('------------')
 	st.write('st.multiselect : select from the list provided.')
-	options = st.multiselect('Select the primary type(s)', df_columns)
+	options = st.multiselect('Select the primary type(s)', ptg_pd['PRIMARY_TYPE'])
 	
 
 	
