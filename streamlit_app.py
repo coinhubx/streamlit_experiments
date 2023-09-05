@@ -38,13 +38,16 @@ with col2:
 	st.button("Reset", type="primary")
 	if st.button('Submit'):
 		sit_text_list = list(map(lambda y: y.strip().upper(), selected_in_text.split(',')))
-		df_sit = ptg_pd.loc[sit_text_list]
-		st.dataframe(df_sit)
+		try:
+			df_sit = ptg_pd.loc[sit_text_list]
+			st.dataframe(df_sit)
+		except KeyError as e:
+			st.write('Error occurs please check your spelling.')
 	
 	st.write('------------')
 	st.write('st.multiselect : select from the list provided.')
 	options = st.multiselect('Select the primary type(s)', ptg_pd.index)
-	st.write(options) # for debug
+	#st.write(options) # for debug
 	df_to_show = ptg_pd.loc[options]
 	st.dataframe(df_to_show)
 	
