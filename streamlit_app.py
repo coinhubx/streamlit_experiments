@@ -10,11 +10,10 @@ sn_cur = sn_cnx.cursor()
 ### Set the title/header
 st.set_page_config(layout='wide')
 
-'''
-# Welcome to my streamlit/snowflake experiments.
-Hope you enjoy my learning journey!
 
-'''
+st.title('Welcome to my _Streamlit/Snowflake_ experiments.', divider = 'rainbow')
+st.subheader('Hope you enjoy my :blue[learning journey] :car!')
+
 
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
@@ -23,14 +22,11 @@ df_columns = list(map(lambda x :x[0], sn_cur.description))
 ptg_pd = pd.DataFrame(data, columns = df_columns) #a pandas dataframe with column names
 ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 
-
 ## Layout
 col1, col2, col3 = st.columns((1,2,2))
 with col1:
 	'Dataset general information'
 	f"there are {ptg_pd['COUNT'].sum()} rows in the table!"
-	
-	
 	
 with col2:
 	'Bar chart group by primary_type'
@@ -50,19 +46,19 @@ with col2:
 			'Error occurs please check your spelling.'
 	
 
-	st.write('st.multiselect : select from the list provided.')
+	'st.multiselect : select from the list provided.'
 	options = st.multiselect('Select the primary type(s)', ptg_pd.index)
 	#st.write(options) # for debug
 	df_to_show = ptg_pd.loc[options]
-	st.dataframe(df_to_show)
+	df_to_show
 	
 	
 with col3:
-	st.write('input widget - slider')
+	'input widget - slider'
 	num_selected = st.slider('What number', 0, 500, 100)
 	df3_to_show = ptg_pd[ptg_pd['COUNT']< num_selected]
-	st.dataframe(df3_to_show)
-	
+	df3_to_show
+
 	st.write('bar chart')
 	
 	# pick color for the bar
