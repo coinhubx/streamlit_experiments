@@ -54,7 +54,7 @@ with col2:
 	
 with col3:
 	st.write('input widget - slider')
-	num_selected = st.slider('What number', 0.0, 1700000)
+	num_selected = st.slider('What number', 0, 1700000, 500)
 	df3_to_show = ptg_pd[ptg_pd['COUNT']< num_selected]
 	st.dataframe(df3_to_show)
 	
