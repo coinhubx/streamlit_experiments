@@ -14,9 +14,9 @@ st.subheader('Hope you enjoy my learning journey!')
 
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
-data = sn_cur.fetchall() #fetch_pandas_all() ?
-ptg_pd = pd.DataFrame(data, columns= list(map(lambda x :x[0], sn_cur.description)))
-ptg_pd = ptg_pd.set_index('PRIMARY_TYPE')
+data = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
+ptg_pd = pd.DataFrame(data, columns= list(map(lambda x :x[0], sn_cur.description))) #a pandas dataframe with column names
+ptg_pd = ptg_pd.set_index('PRIMARY_TYPE') #set column name
 
 
 ## Layout
@@ -27,19 +27,16 @@ with col1:
 	
 with col2:
 	st.write('Bar chart group by primary_type')
-
-
 	st.dataframe(ptg_pd) 
 	
 	st.write('------------')
-	#st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
-	#text = st.text_input('Insert the primary type.', value = 'ROBBERY', max_chars = 30)
+	st.write('st.text_input demo - max_chars sets max characters allowed. if exceed, copy/paste disabled')
+	text = st.text_input('Insert the primary type.', value = 'ROBBERY', max_chars = 30)
 	
-	#st.write('st.button demo - 2 buttons')
-	#st.button("Reset", type="primary")
-	#if st.button('Submit'):
-
-	#	st.dataframe(ptg)
+	st.write('st.button demo - 2 buttons')
+	st.button("Reset", type="primary")
+	if st.button('Submit'):
+		st.dataframe(ptg_pd)
 	
 	st.write('------------')
 	#st.write('st.multiselect : select from the list provided.')
