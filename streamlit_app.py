@@ -61,5 +61,3 @@ with col3:
 	st.write('bar chart')
 	st.bar_char(ptg_pd)
 	
-	
-
