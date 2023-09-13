@@ -106,7 +106,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		else:
 			arrest_filter = ""
 			
-		if is_arrest_cb:
+		if is_domestic_cb:
 			domestic_filter = "AND DOMESTIC = TRUE"
 		else:
 			domestic_filter = ""
@@ -119,7 +119,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
 		
 		################ 
-		st.write(":green[**The sql code**]")
+		st.write(":green[**The sql code used to run the report.**]")
 		st.code(sql_stmt, language="sql", line_numbers=False)
 			
 		sn_cur.execute(sql_stmt)
@@ -132,7 +132,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		f"there are **{rpt_size}** rows in the report!"
 		
 		##################
-		st.subheader(":blue[**The following table only shows the first 100 rows.**]")
+		st.write(":blue[**The following table only shows the first 100 rows.**]")
 		if rpt_size < 100:
 			ptg_pd_rpt
 		else:
@@ -148,6 +148,6 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			file_name= f'rpt_.csv',
 			mime='text/csv',)
 
-	except KeyError as e:
-		':red[**Error occurs**] - please check your spelling.'
+	except:
+		':red[**Error occurs**] - please check your code.'
 
