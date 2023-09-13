@@ -124,8 +124,13 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
 		
-		f"there are **{ptg_pd_rpt.shape[0]}** rows in the table!"
-		ptg_pd_rpt
+		rpt_size = ptg_pd_rpt.shape[0]
+		f"there are **{rpt_size}** rows in the table!"
+		
+		if rpt_size < 100:
+			ptg_pd_rpt
+		else:
+			ptg_pd_rpt.head(100)
 		
 		rpt_csv = convert_df(ptg_pd_rpt)
 		
