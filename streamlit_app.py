@@ -69,8 +69,8 @@ st.divider()
 
 st.header('REPORT AREA', divider = 'rainbow')
 
-start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1))
-end_date = st.date_input("END_DATE", datetime.date(2023, 7, 1))
+start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1), format="YYYY-MM-DD")
+end_date = st.date_input("END_DATE", datetime.date(2023, 7, 1), format="YYYY-MM-DD")
 	
 'st.button demo - 2 buttons'
 st.button("Reset", key = 'resetrptreset')
