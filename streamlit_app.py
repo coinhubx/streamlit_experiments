@@ -124,9 +124,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		where_stmt = " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
 			
 		sql_cnt_stmt = sql_count_base + where_stmt
-		
 		sql_show_stmt = sql_show_base + where_stmt
-		
 		sql_stmt = sql_base + where_stmt
 		
 		my_bar.progress(10, text=progress_text)
@@ -155,28 +153,27 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		######### download
 		
-		if data_cnt[0] < 20000:
-			sn_cur.execute(sql_stmt)
-			data_rpt_dl = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
-			df_columns_rpt_dl = list(map(lambda x :x[0], sn_cur.description))
-			ptg_pd_rpt_dl = pd.DataFrame(data_rpt, columns = df_columns_rpt_dl) #a pandas dataframe with column names
-			ptg_pd_rpt_dl = ptg_pd_rpt_dl.set_index('ID') #set column name
-			rpt_csv = convert_df(ptg_pd_rpt_dl)
+	if data_cnt[0] < 20000:
+	
+		sn_cur.execute(sql_stmt)
+		data_rpt_dl = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
+		df_columns_rpt_dl = list(map(lambda x :x[0], sn_cur.description))
+		ptg_pd_rpt_dl = pd.DataFrame(data_rpt, columns = df_columns_rpt_dl) #a pandas dataframe with column names
+		ptg_pd_rpt_dl = ptg_pd_rpt_dl.set_index('ID') #set column name
+		rpt_csv = convert_df(ptg_pd_rpt_dl)
 
-			current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
+		current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
 
-			st.download_button(
-				label="Download report (csv)",
-				data=rpt_csv,
-				file_name= f'rpt_.csv',
-				mime='text/csv',)
+		st.download_button(
+			label="Download report (csv)",
+			data=rpt_csv,
+			file_name= f'rpt_dl.csv',
+			mime='text/csv',)
 			
-
-
-		st.balloons()
 
 	except:
 		':red[**Error occurs**] - please check your code.'
 		
-		
+
+st.balloons()	
 
