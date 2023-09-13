@@ -2,6 +2,7 @@ import streamlit as st
 import snowflake.connector
 import pandas as pd
 import requests
+import datetime
 
 ### Snowflake connection
 sn_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
