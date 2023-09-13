@@ -81,7 +81,7 @@ with col22:
 	is_domestic_cb = st.checkbox('Domestic')
 	
 	rpt_options = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'rpt_options')
-	rpt_options
+	str(list(map(lambda x : f"'{x}'", rpt_options.values)))
 
 
 st.divider()
