@@ -73,8 +73,8 @@ start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1))
 end_date = st.date_input("END_DATE", datetime.date(2023, 7, 1))
 	
 'st.button demo - 2 buttons'
-st.button("Reset", type="primary")
-if st.button('Submit'):
+st.button("Reset", key = 'resetrptreset')
+if st.button('Submit', key = 'resetrptsubmit'):
 	
 	try:
 		st.write(start_date)
