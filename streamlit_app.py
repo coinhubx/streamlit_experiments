@@ -14,6 +14,7 @@ st.title(':blue[Chicago Crime] Database :cop:')
 st.caption('streamlit experiments')
 st.divider()
 
+st.header('Summary', divider = 'rainbow')
 #read the materialized view
 sn_cur.execute("select * FROM RAW.SUMMARY_CRIME_COUNTS;")
 data = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
@@ -66,3 +67,16 @@ with col3:
 st.divider()
 
 st.header('REPORT AREA', divider = 'rainbow')
+
+sn_cur.execute("SELECT * FROM TORONTO_CRIME_DB.RAW.CHICAGO_CRIMES;")
+data_all = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
+df_all_columns = list(map(lambda x :x[0], sn_cur.description))
+ptg_pd_all = pd.DataFrame(data_all, columns = df_columns) #a pandas dataframe with column names
+ptg_pd_all = ptg_pd_all.set_index('ID') #set column name
+
+options = st.multiselect('Select the primary type(s)', ptg_pd.index)
+	#st.write(options) # for debug
+	df_to_show_all = ptg_pd_all.loc[options]
+	df_to_show_all
+	
+
