@@ -94,12 +94,12 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		date_btw_filter = f"to_date(date) between '{p_sd}' and '{p_ed}'"
 		
 		if is_arrest_cb:
-			arrest_filter = "ARREST = TRUE"
+			arrest_filter = "AND ARREST = TRUE"
 		else:
 			arrest_filter = ""
 			
 		if is_arrest_cb:
-			domestic_filter = "DOMESTIC = TRUE"
+			domestic_filter = "AND DOMESTIC = TRUE"
 		else:
 			domestic_filter = ""
 		
