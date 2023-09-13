@@ -96,67 +96,70 @@ if st.button('Submit', key = 'resetrptsubmit'):
 
 	progress_text = "Operation in progress. Please wait."
 	my_bar = st.progress(0, text=progress_text)
-	
-	for percent_complete in range(100):
 
-		try:
-			p_sd = start_date.strftime('%Y-%m-%d')
-			p_ed = end_date.strftime('%Y-%m-%d')
+	try:
+		p_sd = start_date.strftime('%Y-%m-%d')
+		p_ed = end_date.strftime('%Y-%m-%d')
+		
+		sql_base = "select * FROM RAW.CHICAGO_CRIMES"
+		date_btw_filter = f"to_date(date) between '{p_sd}' and '{p_ed}'"
+		
+		if is_arrest_cb:
+			arrest_filter = "AND ARREST = TRUE"
+		else:
+			arrest_filter = ""
 			
-			sql_base = "select * FROM RAW.CHICAGO_CRIMES"
-			date_btw_filter = f"to_date(date) between '{p_sd}' and '{p_ed}'"
+		if is_domestic_cb:
+			domestic_filter = "AND DOMESTIC = TRUE"
+		else:
+			domestic_filter = ""
 			
-			if is_arrest_cb:
-				arrest_filter = "AND ARREST = TRUE"
-			else:
-				arrest_filter = ""
-				
-			if is_domestic_cb:
-				domestic_filter = "AND DOMESTIC = TRUE"
-			else:
-				domestic_filter = ""
-				
-			if rpt_options:
-				rpt_option_filter = f"AND PRIMARY_TYPE IN ({rpt_options})"
-			else:
-				rpt_option_filter = ""
+		if rpt_options:
+			rpt_option_filter = f"AND PRIMARY_TYPE IN ({rpt_options})"
+		else:
+			rpt_option_filter = ""
+		
+		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
+		
+		my_bar.progress(10, text=progress_text)
+		
+		################ 
+		st.write(":green[**The sql code used to run the report.**]")
+		st.code(sql_stmt, language="sql", line_numbers=False)
 			
-			sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
-			
-			################ 
-			st.write(":green[**The sql code used to run the report.**]")
-			st.code(sql_stmt, language="sql", line_numbers=False)
-				
-			sn_cur.execute(sql_stmt)
-			data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
-			df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
-			ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
-			ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
-			
-			rpt_size = ptg_pd_rpt.shape[0]
-			f"there are **{rpt_size}** rows in the report!"
-			
-			##################
-			st.write(":blue[**The following table only shows the first 100 rows.**]")
-			if rpt_size < 100:
-				ptg_pd_rpt
-			else:
-				st.write(ptg_pd_rpt.head(100))
-			
-			rpt_csv = convert_df(ptg_pd_rpt)
-			
-			current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
+		sn_cur.execute(sql_stmt)
+		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
+		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
+		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
+		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
+		
+		rpt_size = ptg_pd_rpt.shape[0]
+		f"there are **{rpt_size}** rows in the report!"
+		my_bar.progress(50, text=progress_text)
+		
+		##################
+		st.write(":blue[**The following table only shows the first 100 rows.**]")
+		if rpt_size < 100:
+			ptg_pd_rpt
+		else:
+			st.write(ptg_pd_rpt.head(100))
+		
+		my_bar.progress(100, text=progress_text)
+		
+		rpt_csv = convert_df(ptg_pd_rpt)
+		
+		current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
 
-			st.download_button(
-				label="Download report (csv)",
-				data=rpt_csv,
-				file_name= f'rpt_.csv',
-				mime='text/csv',)
-			
-			my_bar.progress(percent_complete + 1, text=progress_text)
+		st.download_button(
+			label="Download report (csv)",
+			data=rpt_csv,
+			file_name= f'rpt_.csv',
+			mime='text/csv',)
 
-		except:
-			':red[**Error occurs**] - please check your code.'
+		
+
+	except:
+		':red[**Error occurs**] - please check your code.'
 		
 		
 
