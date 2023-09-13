@@ -146,8 +146,10 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		my_bar.progress(100, text=progress_text)
 		
-		rpt_csv = convert_df(ptg_pd_rpt)
 		
+		######### download
+		rpt_csv = convert_df(ptg_pd_rpt)
+
 		current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
 
 		st.download_button(
@@ -156,7 +158,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			file_name= f'rpt_.csv',
 			mime='text/csv',)
 
-		
+		st.balloons()
 
 	except:
 		':red[**Error occurs**] - please check your code.'
