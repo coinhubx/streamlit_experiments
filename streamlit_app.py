@@ -105,7 +105,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + ";"
 			
-		rpt_options = st.multiselect('Select the primary type(s)', ptg_pd.index)
+		rpt_options = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'rpt_options')
 		rpt_options
 
 		sn_cur.execute(sql_stmt)
