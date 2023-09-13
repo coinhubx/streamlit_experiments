@@ -153,22 +153,22 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		######### download
 		
-	if data_cnt[0] < 20000:
-	
-		sn_cur.execute(sql_stmt)
-		data_rpt_dl = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
-		df_columns_rpt_dl = list(map(lambda x :x[0], sn_cur.description))
-		ptg_pd_rpt_dl = pd.DataFrame(data_rpt, columns = df_columns_rpt_dl) #a pandas dataframe with column names
-		ptg_pd_rpt_dl = ptg_pd_rpt_dl.set_index('ID') #set column name
-		rpt_csv = convert_df(ptg_pd_rpt_dl)
+		if data_cnt[0] < 20000:
+		
+			sn_cur.execute(sql_stmt)
+			data_rpt_dl = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
+			df_columns_rpt_dl = list(map(lambda x :x[0], sn_cur.description))
+			ptg_pd_rpt_dl = pd.DataFrame(data_rpt, columns = df_columns_rpt_dl) #a pandas dataframe with column names
+			ptg_pd_rpt_dl = ptg_pd_rpt_dl.set_index('ID') #set column name
+			rpt_csv = convert_df(ptg_pd_rpt_dl)
 
-		current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
+			current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
 
-		st.download_button(
-			label="Download report (csv)",
-			data=rpt_csv,
-			file_name= f'rpt_dl.csv',
-			mime='text/csv',)
+			st.download_button(
+				label="Download report (csv)",
+				data=rpt_csv,
+				file_name= f'rpt_dl.csv',
+				mime='text/csv',)
 			
 
 	except:
