@@ -127,7 +127,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sql_show_stmt = sql_show_base + where_stmt
 		
-		sql_download_stmt = sql_base + where_stmt
+		sql_stmt = sql_base + where_stmt
 		
 		my_bar.progress(10, text=progress_text)
 		
