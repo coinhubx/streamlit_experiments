@@ -130,7 +130,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		if rpt_size < 100:
 			ptg_pd_rpt
 		else:
-			ptg_pd_rpt.head(100)
+			st.write(ptg_pd_rpt.head(100))
 		
 		rpt_csv = convert_df(ptg_pd_rpt)
 		
