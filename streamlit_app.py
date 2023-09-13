@@ -102,6 +102,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		p_ed = end_date.strftime('%Y-%m-%d')
 		
 		sql_base = "select * FROM RAW.CHICAGO_CRIMES"
+		sql_count_base = "select count(1) as CNT FROM RAW.CHICAGO_CRIMES"
 		date_btw_filter = f"to_date(date) between '{p_sd}' and '{p_ed}'"
 		
 		if is_arrest_cb:
@@ -118,15 +119,23 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			rpt_option_filter = f"AND PRIMARY_TYPE IN ({rpt_options})"
 		else:
 			rpt_option_filter = ""
+			
+		where_stmt = " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
+			
+		sql_cnt_stmt = sql_count_base + where_stmt
 		
-		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
+		sql_stmt = sql_base + where_stmt
 		
 		my_bar.progress(10, text=progress_text)
 		
 		################ 
 		st.write(":green[**The sql code used to run the report.**]")
 		st.code(sql_stmt, language="sql", line_numbers=False)
-			
+		
+		sn_cur.execute(sql_cnt_stmt)
+		data_cnt = sn_cur.fetchone()
+		st.subheader(f"im here {data_cnt[0]}")
+		
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
@@ -158,9 +167,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			file_name= f'rpt_.csv',
 			mime='text/csv',)
 			
-			
-		###########
-		st.subheader("Balloons float up at the end of every report run. ")
+
 
 		st.balloons()
 
