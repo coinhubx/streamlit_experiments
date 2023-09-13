@@ -158,7 +158,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			sn_cur.execute(sql_stmt)
 			data_rpt_dl = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 			df_columns_rpt_dl = list(map(lambda x :x[0], sn_cur.description))
-			ptg_pd_rpt_dl = pd.DataFrame(data_rpt, columns = df_columns_rpt_dl) #a pandas dataframe with column names
+			ptg_pd_rpt_dl = pd.DataFrame(data_rpt_dl, columns = df_columns_rpt_dl) #a pandas dataframe with column names
 			ptg_pd_rpt_dl = ptg_pd_rpt_dl.set_index('ID') #set column name
 			rpt_csv = convert_df(ptg_pd_rpt_dl)
 
@@ -175,5 +175,5 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		':red[**Error occurs**] - please check your code.'
 		
 
-st.balloons()	
+#st.balloons()	
 
