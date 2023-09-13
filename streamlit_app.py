@@ -77,8 +77,8 @@ st.button("Reset", key = 'resetrptreset')
 if st.button('Submit', key = 'resetrptsubmit'):
 	
 	try:
-		st.text(start_date)
-		st.text(end_date)
+		start_date = st.text(start_date)
+		end_date = st.text(end_date)
 
 		sn_cur.execute(f"select top 10 * FROM RAW.CHICAGO_CRIMES where to_date(date) between {start_date} and {end_date};")
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
