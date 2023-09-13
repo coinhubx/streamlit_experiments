@@ -71,13 +71,13 @@ st.header('REPORT AREA', divider = 'rainbow')
 start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1))
 end_date = st.date_input("END_DATE", datetime.date(2023, 7, 1))
 	
-	'st.button demo - 2 buttons'
-	st.button("Reset", type="primary")
-	if st.button('Submit'):
-		
-		try:
-			st.write(start_date)
-			st.write(end_date)
-		except KeyError as e:
-			':red[**Error occurs**] - please check your spelling.'
+'st.button demo - 2 buttons'
+st.button("Reset", type="primary")
+if st.button('Submit'):
+	
+	try:
+		st.write(start_date)
+		st.write(end_date)
+	except KeyError as e:
+		':red[**Error occurs**] - please check your spelling.'
 
