@@ -80,7 +80,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		st.write(start_date)
 		st.write(end_date)
 		
-		sn_cur.execute(f"select top 10 * FROM RAW.SUMMARY_CRIME_COUNTS where to_date(date) between {start_date} and {end_date};")
+		sn_cur.execute(f"select top 10 * FROM RAW.CHICAGO_CRIMES where to_date(date) between {start_date} and {end_date};")
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
