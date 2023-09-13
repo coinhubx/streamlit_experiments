@@ -68,15 +68,16 @@ st.divider()
 
 st.header('REPORT AREA', divider = 'rainbow')
 
-sn_cur.execute("SELECT top 20 * FROM TORONTO_CRIME_DB.RAW.CHICAGO_CRIMES;")
-data_all = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
-df_all_columns = list(map(lambda x :x[0], sn_cur.description))
-ptg_pd_all = pd.DataFrame(data_all, columns = df_all_columns) #a pandas dataframe with column names
-ptg_pd_all = ptg_pd_all.set_index('ID') #set column name
-
-options_all = st.multiselect('Select the primary type(s)', ptg_pd_all.index)
-#st.write(options) # for debug
-df_to_show_all = ptg_pd_all.loc[options_all]
-df_to_show_all
+start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1))
+end_date = st.date_input("END_DATE", datetime.date(2023, 7, 1))
 	
+	'st.button demo - 2 buttons'
+	st.button("Reset", type="primary")
+	if st.button('Submit'):
+		
+		try:
+			st.write(start_date)
+			st.write(end_date)
+		except KeyError as e:
+			':red[**Error occurs**] - please check your spelling.'
 
