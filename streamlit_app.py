@@ -117,6 +117,10 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			rpt_option_filter = ""
 		
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
+		
+		################ 
+		st.wrte(":green[**The sql code**]")
+		st.code(sql_stmt, language="sql", line_numbers=False)
 			
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
@@ -127,6 +131,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		rpt_size = ptg_pd_rpt.shape[0]
 		f"there are **{rpt_size}** rows in the report!"
 		
+		##################
 		st.subheader(":blue[**The following table only shows the first 100 rows.**]")
 		if rpt_size < 100:
 			ptg_pd_rpt
@@ -141,8 +146,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			label="Download report (csv)",
 			data=rpt_csv,
 			file_name= f'rpt_.csv',
-			mime='text/csv',
-)
+			mime='text/csv',)
 
 	except KeyError as e:
 		':red[**Error occurs**] - please check your spelling.'
