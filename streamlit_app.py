@@ -105,7 +105,8 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + ";"
 			
-		st.text(options)
+		rpt_options = t.multiselect('Select the primary type(s)', ptg_pd.index)
+		rpt_options
 
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
