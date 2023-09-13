@@ -80,9 +80,9 @@ with col22:
 	is_arrest_cb = st.checkbox('Arrest')
 	is_domestic_cb = st.checkbox('Domestic')
 	
-	rpt_options = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'rpt_options')
-	st.text(str(list(map(lambda x : f"'{x}'", rpt_options))))
-
+	rpt_select = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'select')
+	rpt_selected = str(rpt_select)
+	rpt_options = rpt_selected[1:len(rpt_selected)-1]
 
 st.divider()
 'st.button demo - 2 buttons'
@@ -105,8 +105,13 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			domestic_filter = "AND DOMESTIC = TRUE"
 		else:
 			domestic_filter = ""
+			
+		if rpt_options:
+			rpt_option_filter = f"AND PRIMARY_TYPE IN ({rpt_options})"
+		else:
+			rpt_option_filter = ""
 		
-		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + ";"
+		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
 			
 		
 
