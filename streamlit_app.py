@@ -155,7 +155,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		######### download
 		
-		if data_cnt[0] < 10000:
+		if data_cnt[0] < 20000:
 			sn_cur.execute(sql_stmt)
 			data_rpt_dl = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 			df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
