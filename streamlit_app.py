@@ -125,8 +125,9 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
 		
 		rpt_size = ptg_pd_rpt.shape[0]
-		f"there are **{rpt_size}** rows in the table!"
+		f"there are **{rpt_size}** rows in the report!"
 		
+		st.subheader(":blue[**The following table only shows the first 100 rows.**]")
 		if rpt_size < 100:
 			ptg_pd_rpt
 		else:
