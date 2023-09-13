@@ -157,6 +157,10 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			data=rpt_csv,
 			file_name= f'rpt_.csv',
 			mime='text/csv',)
+			
+			
+		###########
+		st.subheader("Balloons float up at the end of every report run. ")
 
 		st.balloons()
 
