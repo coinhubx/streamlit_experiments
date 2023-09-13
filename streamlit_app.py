@@ -69,9 +69,19 @@ st.divider()
 
 st.header('REPORT AREA', divider = 'rainbow')
 
-start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1), format="YYYY-MM-DD")
-end_date = st.date_input("END_DATE", datetime.date(2023, 7, 31), format="YYYY-MM-DD")
+col11, col22 = st.columns((1,1))
+
+with col11:
+	start_date = st.date_input("START_DATE", datetime.date(2023, 7, 1), format="YYYY-MM-DD")
+	end_date = st.date_input("END_DATE", datetime.date(2023, 7, 31), format="YYYY-MM-DD")
 	
+	
+with col22:
+	is_arrest_cb = st.checkbox('Arrest')
+	is_domestic_cb = st.checkbox('Domestic')
+
+
+st.divider()
 'st.button demo - 2 buttons'
 st.button("Reset", key = 'resetrptreset')
 if st.button('Submit', key = 'resetrptsubmit'):
@@ -79,8 +89,25 @@ if st.button('Submit', key = 'resetrptsubmit'):
 	try:
 		p_sd = start_date.strftime('%Y-%m-%d')
 		p_ed = end_date.strftime('%Y-%m-%d')
+		
+		sql_base = "select top 10 * FROM RAW.CHICAGO_CRIMES"
+		date_btw_filter = f"to_date(date) between '{p_sd}' and '{p_ed}'"
+		
+		if is_arrest_cb:
+			arrest_filter = "ARREST = TRUE"
+		else:
+			arrest_filter = ""
+			
+		if is_arrest_cb:
+			domestic_filter = "DOMESTIC = TRUE"
+		else:
+			domestic_filter = ""
+		
+		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + ";"
+			
+		st.text(options)
 
-		sn_cur.execute(f"select top 10 * FROM RAW.CHICAGO_CRIMES where to_date(date) between '{p_sd}' and '{p_ed}';")
+		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
