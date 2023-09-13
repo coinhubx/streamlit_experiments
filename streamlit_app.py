@@ -85,6 +85,8 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
+		
+		ptg_pd_rpt
 
 	except KeyError as e:
 		':red[**Error occurs**] - please check your spelling.'
