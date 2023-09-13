@@ -163,13 +163,17 @@ if st.button('Submit', key = 'resetrptsubmit'):
 			rpt_csv = convert_df(ptg_pd_rpt_dl)
 
 			current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
+			
+			my_bar.progress(80, text=progress_text)
 
 			st.download_button(
 				label="Download report (csv)",
 				data=rpt_csv,
 				file_name= f'rpt_dl.csv',
 				mime='text/csv',)
-			
+		
+		
+		my_bar.progress(100, text=progress_text)	
 
 	except:
 		':red[**Error occurs**] - please check your code.'
