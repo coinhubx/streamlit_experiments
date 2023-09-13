@@ -91,7 +91,6 @@ with col22:
 
 st.divider()
 
-st.button("Reset", key = 'resetrptreset')
 if st.button('Submit', key = 'resetrptsubmit'):
 
 	progress_text = "Operation in progress. Please wait."
