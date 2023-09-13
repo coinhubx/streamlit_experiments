@@ -85,7 +85,7 @@ with col22:
 	rpt_options = rpt_selected[1:len(rpt_selected)-1]
 
 st.divider()
-'st.button demo - 2 buttons'
+
 st.button("Reset", key = 'resetrptreset')
 if st.button('Submit', key = 'resetrptsubmit'):
 	
@@ -113,14 +113,13 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
 			
-			
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
 		
-		f"there are {ptg_pd_rpt.shape} rows in the table!"
+		f"there are [**{ptg_pd_rpt.shape[0]}**] rows in the table!"
 		ptg_pd_rpt
 
 	except KeyError as e:
