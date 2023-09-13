@@ -4,6 +4,11 @@ import pandas as pd
 import requests
 import datetime
 
+@st.cache
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
 ### Snowflake connection
 sn_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 sn_cur = sn_cnx.cursor()
@@ -78,7 +83,7 @@ with col11:
 	
 with col22:
 	is_arrest_cb = st.checkbox('Arrest')
-	is_domestic_cb = st.checkbox('Domestic')
+	is_domestic_cb = st.toggle('Domestic')
 	
 	rpt_select = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'select')
 	rpt_selected = str(rpt_select)
@@ -119,8 +124,19 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
 		
-		f"there are [**{ptg_pd_rpt.shape[0]}**] rows in the table!"
+		f"there are **{ptg_pd_rpt.shape[0]}** rows in the table!"
 		ptg_pd_rpt
+		
+		rpt_csv = convert_df(ptg_pd_rpt)
+		
+		current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
+
+		st.download_button(
+			label="Download report (csv)",
+			data=rpt_csv,
+			file_name= f'rpt_.csv',
+			mime='text/csv',
+)
 
 	except KeyError as e:
 		':red[**Error occurs**] - please check your spelling.'
