@@ -119,7 +119,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
 		
 		################ 
-		st.wrte(":green[**The sql code**]")
+		st.write(":green[**The sql code**]")
 		st.code(sql_stmt, language="sql", line_numbers=False)
 			
 		sn_cur.execute(sql_stmt)
