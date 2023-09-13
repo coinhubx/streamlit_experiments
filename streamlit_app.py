@@ -68,7 +68,7 @@ st.divider()
 
 st.header('REPORT AREA', divider = 'rainbow')
 
-sn_cur.execute("SELECT * FROM TORONTO_CRIME_DB.RAW.CHICAGO_CRIMES;")
+sn_cur.execute("SELECT top 20 * FROM TORONTO_CRIME_DB.RAW.CHICAGO_CRIMES;")
 data_all = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 df_all_columns = list(map(lambda x :x[0], sn_cur.description))
 ptg_pd_all = pd.DataFrame(data_all, columns = df_all_columns) #a pandas dataframe with column names
