@@ -78,7 +78,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 	
 	try:
 	
-		print(start_date)
+		st.text(start_date.strftime('%Y-%m-%d'))
 
 	except KeyError as e:
 		':red[**Error occurs**] - please check your spelling.'
