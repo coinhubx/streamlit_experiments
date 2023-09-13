@@ -93,7 +93,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		p_sd = start_date.strftime('%Y-%m-%d')
 		p_ed = end_date.strftime('%Y-%m-%d')
 		
-		sql_base = "select top 10 * FROM RAW.CHICAGO_CRIMES"
+		sql_base = "select * FROM RAW.CHICAGO_CRIMES"
 		date_btw_filter = f"to_date(date) between '{p_sd}' and '{p_ed}'"
 		
 		if is_arrest_cb:
@@ -113,14 +113,14 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + " " + rpt_option_filter + ";"
 			
-		
-
+			
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
 		
+		f"there are {ptg_pd_rpt.shape} rows in the table!"
 		ptg_pd_rpt
 
 	except KeyError as e:
