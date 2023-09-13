@@ -71,12 +71,12 @@ st.header('REPORT AREA', divider = 'rainbow')
 sn_cur.execute("SELECT * FROM TORONTO_CRIME_DB.RAW.CHICAGO_CRIMES;")
 data_all = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 df_all_columns = list(map(lambda x :x[0], sn_cur.description))
-ptg_pd_all = pd.DataFrame(data_all, columns = df_columns) #a pandas dataframe with column names
+ptg_pd_all = pd.DataFrame(data_all, columns = df_all_columns) #a pandas dataframe with column names
 ptg_pd_all = ptg_pd_all.set_index('ID') #set column name
 
-options = st.multiselect('Select the primary type(s)', ptg_pd.index)
+options_all = st.multiselect('Select the primary type(s)', ptg_pd_all.index)
 #st.write(options) # for debug
-df_to_show_all = ptg_pd_all.loc[options]
+df_to_show_all = ptg_pd_all.loc[options_all]
 df_to_show_all
 	
 
