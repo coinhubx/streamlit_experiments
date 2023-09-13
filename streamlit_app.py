@@ -79,6 +79,9 @@ with col11:
 with col22:
 	is_arrest_cb = st.checkbox('Arrest')
 	is_domestic_cb = st.checkbox('Domestic')
+	
+	rpt_options = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'rpt_options')
+	rpt_options
 
 
 st.divider()
@@ -105,8 +108,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sql_stmt = sql_base + " WHERE " + date_btw_filter + " " + arrest_filter + " " + domestic_filter + ";"
 			
-		rpt_options = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'rpt_options')
-		rpt_options
+		
 
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
