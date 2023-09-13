@@ -75,8 +75,8 @@ ptg_pd_all = pd.DataFrame(data_all, columns = df_columns) #a pandas dataframe wi
 ptg_pd_all = ptg_pd_all.set_index('ID') #set column name
 
 options = st.multiselect('Select the primary type(s)', ptg_pd.index)
-	#st.write(options) # for debug
-	df_to_show_all = ptg_pd_all.loc[options]
-	df_to_show_all
+#st.write(options) # for debug
+df_to_show_all = ptg_pd_all.loc[options]
+df_to_show_all
 	
 
