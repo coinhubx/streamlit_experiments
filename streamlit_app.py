@@ -134,7 +134,6 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		sn_cur.execute(sql_cnt_stmt)
 		data_cnt = sn_cur.fetchone()
-		st.subheader(f"im here {data_cnt[0]}")
 		
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
@@ -148,10 +147,8 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		
 		##################
 		st.write(":blue[**The following table only shows the first 100 rows.**]")
-		if rpt_size < 100:
-			ptg_pd_rpt
-		else:
-			st.write(ptg_pd_rpt.head(100))
+		if data_cnt[0] < 100:
+			ptg_pd_rpt(100)
 		
 		my_bar.progress(100, text=progress_text)
 		
