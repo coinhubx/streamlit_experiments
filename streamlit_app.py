@@ -135,14 +135,15 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		sn_cur.execute(sql_cnt_stmt)
 		data_cnt = sn_cur.fetchone()
 		
+		f"there are **data_cnt** rows in the report!"
+		
 		sn_cur.execute(sql_stmt)
 		data_rpt = sn_cur.fetchall() #fetch_pandas_all() doesn't work here.
 		df_columns_rpt = list(map(lambda x :x[0], sn_cur.description))
 		ptg_pd_rpt = pd.DataFrame(data_rpt, columns = df_columns_rpt) #a pandas dataframe with column names
 		ptg_pd_rpt = ptg_pd_rpt.set_index('ID') #set column name
 		
-		rpt_size = ptg_pd_rpt.shape[0]
-		f"there are **{rpt_size}** rows in the report!"
+		#rpt_size = ptg_pd_rpt.shape[0]
 		my_bar.progress(50, text=progress_text)
 		
 		##################
