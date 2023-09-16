@@ -179,7 +179,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 		':red[**Error occurs**] - please check your code.'
 		
 	#### map
-	st.map(data_rpt, latitude = 'LATITUDE', longitude = 'LONGITUDE')
+	st.map(ptg_pd_rpt, latitude = 'LATITUDE', longitude = 'LONGITUDE')
 		
 
 #st.balloons()	
