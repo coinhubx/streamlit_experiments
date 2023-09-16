@@ -178,6 +178,9 @@ if st.button('Submit', key = 'resetrptsubmit'):
 	except:
 		':red[**Error occurs**] - please check your code.'
 		
+	#### map
+	st.map(data_rpt)
+		
 
 #st.balloons()	
 
