@@ -186,7 +186,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 	
 
 url = "https://data.cityofchicago.org/resource/crimes.json"
-response = urllib.urlopen(url)
+response = urllib.request.urlopen(url)
 data = json.loads(response.read())
 nwdata = pd.DataFrame(data)
 nwdata.head(10)
