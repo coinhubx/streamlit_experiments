@@ -3,6 +3,7 @@ import snowflake.connector
 import pandas as pd
 import requests
 import datetime
+import urllib, json
 
 @st.cache
 def convert_df(df):
@@ -164,7 +165,7 @@ if st.button('Submit', key = 'resetrptsubmit'):
 
 			current_ts = datetime.datetime.now().strftime('%Y-%m-%d')
 			
-			my_bar.progress(80, text=progress_text)
+			my_bar.progress(70, text=progress_text)
 
 			st.download_button(
 				label="Download report (csv)",
@@ -173,14 +174,25 @@ if st.button('Submit', key = 'resetrptsubmit'):
 				mime='text/csv',)
 		
 		
-		my_bar.progress(100, text=progress_text)	
+		my_bar.progress(90, text=progress_text)	
 
 	except:
 		':red[**Error occurs**] - please check your code.'
 		
 	#### map
 	st.map(ptg_pd_rpt, latitude = 'LATITUDE', longitude = 'LONGITUDE')
-		
+	
+	my_bar.progress(100, text=progress_text)	
+	
+
+url = "https://data.cityofchicago.org/resource/crimes.json"
+response = urllib.urlopen(url)
+data = json.loads(response.read())
+nwdata = pd.DataFrame(data)
+nwdata.head(10)
+
+#print(data)
+	
 
 #st.balloons()	
 
