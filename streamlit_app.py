@@ -189,8 +189,8 @@ st.divider()
 url = "https://data.cityofchicago.org/resource/crimes.json"
 response = urllib.request.urlopen(url)
 data = json.loads(response.read())
-#nwdata = pd.DataFrame(data)
-st.write('hello', data)
+nwdata = pd.read_json(data)
+nwdata.head
 
 #st.balloons()	
 
