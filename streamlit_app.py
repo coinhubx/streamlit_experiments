@@ -184,15 +184,13 @@ if st.button('Submit', key = 'resetrptsubmit'):
 	
 	my_bar.progress(100, text=progress_text)	
 	
+st.divider()
 
 url = "https://data.cityofchicago.org/resource/crimes.json"
 response = urllib.request.urlopen(url)
 data = json.loads(response.read())
 #nwdata = pd.DataFrame(data)
-st.write(data)
-
-#print(data)
-	
+st.write('hello', data)
 
 #st.balloons()	
 
