@@ -68,7 +68,7 @@ with col3:
 	'bar chart'
 	# pick color for the bar
 	color_picked = st.color_picker('pick a color for the bar chart', '#f774d8')
-	ptg_pd[['PRIMARY_TYPE', 'COUNT']]
+	ptg_pd['PRIMARY_TYPE']
 	##st.bar_chart(ptg_pd_1, color = color_picked)
 	
 st.divider()
