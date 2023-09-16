@@ -68,7 +68,7 @@ with col3:
 	'bar chart'
 	# pick color for the bar
 	color_picked = st.color_picker('pick a color for the bar chart', '#f774d8')
-	st.bar_chart(ptg_pd, color = color_picked)
+	st.bar_chart(ptg_pd[['PRIMARY_TYPE','COUNT']], color = color_picked)
 	
 st.divider()
 
@@ -85,7 +85,7 @@ with col22:
 	is_arrest_cb = st.checkbox('Arrest')
 	is_domestic_cb = st.toggle('Domestic')
 	
-	rpt_select = st.multiselect('Select the primary type(s)', ptg_pd[ptg_pd.index], key = 'select')
+	rpt_select = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'select')
 	rpt_selected = str(rpt_select)
 	rpt_options = rpt_selected[1:len(rpt_selected)-1]
 
