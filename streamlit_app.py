@@ -85,7 +85,7 @@ with col22:
 	is_arrest_cb = st.checkbox('Arrest')
 	is_domestic_cb = st.toggle('Domestic')
 	
-	rpt_select = st.multiselect('Select the primary type(s)', ptg_pd.index, key = 'select')
+	rpt_select = st.multiselect('Select the primary type(s)', ptg_pd[ptg_pd.index], key = 'select')
 	rpt_selected = str(rpt_select)
 	rpt_options = rpt_selected[1:len(rpt_selected)-1]
 
